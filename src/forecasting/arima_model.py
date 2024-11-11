@@ -13,3 +13,7 @@ def train_arima(train_data, order):
 def arima_forecast(model_fit, steps):
     forecast = model_fit.forecast(steps=steps)
     return forecast
+
+def fit_arima_model(data, order=(5,1,0)):
+    model = ARIMA(data, order=order)
+    return model.fit()

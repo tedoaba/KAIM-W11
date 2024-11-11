@@ -45,6 +45,7 @@ def perform_eda(data):
 
 
 def fill_missing_values(data):
+    print(data.isnull().sum())
     return data.fillna(method='ffill')
 
 def extract_close_prices(data):
@@ -57,3 +58,15 @@ def scale_data(data, scaler=None):
     else:
         data_scaled = scaler.transform(np.array(data).reshape(-1, 1))
     return data_scaled, scaler
+
+def rename_columns_for_prophet(data):
+    data = data[['Adj Close']].reset_index()
+    data.columns = ['ds', 'y']
+    return data
+
+def remove_tz_from_dataframe(df_in):
+    df = df_in.copy()
+    for col in df.select_dtypes(include=['datetime64[ns, UTC]']).columns:
+        df[col] = pd.to_datetime(df[col], infer_datetime_format=True)
+        df[col] = df[col].dt.tz_localize(None)
+    return df

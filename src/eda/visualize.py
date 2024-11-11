@@ -126,3 +126,37 @@ def plot_forecast(actual, forecast, title="Model Forecast vs Actual"):
     plt.legend()
     plt.title(title)
     plt.show()
+
+
+def plot_forecast_prophet(data, forecast, ticker, forecast_horizon):
+    plt.figure(figsize=(14, 7))
+    plt.plot(data['ds'], data['y'], label="Historical Data")
+    plt.plot(forecast['ds'], forecast['yhat'], label="Forecast", color='orange')
+    plt.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='orange', alpha=0.3, label="Confidence Interval")
+    plt.title(f"{ticker} Stock Price Forecast for Next {forecast_horizon // 30} Months")
+    plt.xlabel("Date")
+    plt.ylabel("Stock Price")
+    plt.legend()
+    plt.show()
+
+def plot_trend_volatility(trend, forecast):
+    plt.figure(figsize=(12, 6))
+    plt.plot(trend, label="Forecasted Trend")
+    plt.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='orange', alpha=0.3, label="Volatility (Confidence Interval)")
+    plt.xlabel("Date")
+    plt.ylabel("Trend Value")
+    plt.title("Trend and Volatility Analysis of Forecasted TSLA Stock Prices")
+    plt.legend()
+    plt.show()
+
+def plot_opportunities_and_risks(forecast, opportunity_periods, risk_periods):
+    plt.figure(figsize=(14, 6))
+    plt.plot(forecast['ds'], forecast['yhat'], label="Forecast", color='orange')
+    plt.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='orange', alpha=0.3)
+    plt.scatter(opportunity_periods['ds'], opportunity_periods['yhat'], color='green', label="Opportunity", marker='^')
+    plt.scatter(risk_periods['ds'], risk_periods['yhat'], color='red', label="Risk", marker='v')
+    plt.title("Identified Opportunities and Risks in Forecasted TSLA Stock Prices")
+    plt.xlabel("Date")
+    plt.ylabel("Stock Price")
+    plt.legend()
+    plt.show()
