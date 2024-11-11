@@ -5,31 +5,39 @@ import sys
 
 sys.path.append(os.path.abspath('..'))
 
-from src.config import load_config
-from src.utils.yfinance_loader import fetch_data
-from src.data.data_loader import load_data
-from src.data.data_cleaning import handle_missing_values, remove_outliers
-from src.eda.visualize import plot_close_price, plot_volatility
+from src.data.data_preprocessing import download_data, handle_missing_values, normalize_data
+from src.eda.trend_analysis import decompose_time_series, adf_test
+from src.data.data_loader import load_dataset
+from src.data.data_preprocessing import preprocess_data, perform_eda
+from src.eda.visualize import plot_normalized_prices, plot_percentage_change, decompose_time_series, plot_moving_average_crossover, plot_rolling_stats, plot_correlation_matrix
+from src.portfolio.risk_metrics import calculate_risk_metrics, calculate_drawdown
 
-def main():
-    # Load configuration from config.yaml
-    config = load_config()
-    ticker = config['general']['ticker']
-    start_date = config['general']['start_date']
-    end_date = config['general']['end_date']
-
-    # Download stock data
-    data = load_data(ticker, start_date, end_date)
-
-    # Data cleaning
-    data = handle_missing_values(data)
-    data = remove_outliers(data, 'Close')
-
-    # Visualization
-    plot_close_price(data)
-    plot_volatility(data)
-
-    print("End")
 
 if __name__ == "__main__":
-    main()
+    # Define assets, date range, and load data
+    assets = ['TSLA', 'BND', 'SPY']
+    start_date = '2020-01-01'
+    end_date = '2023-01-01'
+    
+    # Load and preprocess data
+    data = load_dataset(assets, start_date, end_date)
+    data = preprocess_data(data)
+    
+    # Perform EDA
+    perform_eda(data)
+    
+    # Visualization
+    plot_normalized_prices(data)
+    plot_percentage_change(data)
+    plot_rolling_stats(data)
+    plot_correlation_matrix(data)
+    
+    # Time series decomposition
+    decompose_time_series(data, column='TSLA')
+    
+    # Risk metrics
+    calculate_risk_metrics(data, column='TSLA')
+    calculate_drawdown(data, column='TSLA')
+    
+    # Moving average crossover
+    plot_moving_average_crossover(data, column='TSLA')

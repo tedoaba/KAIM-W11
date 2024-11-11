@@ -1,8 +1,8 @@
 # General configuration
 general:
-  start_date: "2022-01-01"
-  end_date: "2022-12-31"
-  ticker: "AAPL"
+  start_date: "2015-01-01"
+  end_date: "2024-10-31"
+  ticker: "TSLA"
   
 # ARIMA model configuration
 arima:
@@ -22,7 +22,7 @@ lstm:
 
 # Data processing parameters
 data_processing:
-  scale_features: ["Close", "Volume"]
+  scale_features: ["Adj Close", "Volume"]
 
 # Portfolio optimization
 portfolio:
