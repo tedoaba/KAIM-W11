@@ -1,11 +1,7 @@
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-import numpy as np
+from sklearn.metrics import mean_absolute_error, mean_squared_error, mean_absolute_percentage_error
 
-def calculate_rmse(true_values, predictions):
-    return np.sqrt(mean_squared_error(true_values, predictions))
-
-def calculate_mae(true_values, predictions):
-    return mean_absolute_error(true_values, predictions)
-
-def calculate_mape(true_values, predictions):
-    return np.mean(np.abs((true_values - predictions) / true_values)) * 100
+def calculate_metrics(actual, forecast):
+    mae = mean_absolute_error(actual, forecast)
+    rmse = mean_squared_error(actual, forecast, squared=False)
+    mape = mean_absolute_percentage_error(actual, forecast)
+    return mae, rmse, mape

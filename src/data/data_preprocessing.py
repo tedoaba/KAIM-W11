@@ -43,3 +43,17 @@ def perform_eda(data):
     print("\nMissing Values:\n", data.isnull().sum())
     print("\nCorrelation Matrix:\n", data[['TSLA', 'BND', 'SPY']].corr())
 
+
+def fill_missing_values(data):
+    return data.fillna(method='ffill')
+
+def extract_close_prices(data):
+    return data['Adj Close']
+
+def scale_data(data, scaler=None):
+    if not scaler:
+        scaler = MinMaxScaler()
+        data_scaled = scaler.fit_transform(np.array(data).reshape(-1, 1))
+    else:
+        data_scaled = scaler.transform(np.array(data).reshape(-1, 1))
+    return data_scaled, scaler

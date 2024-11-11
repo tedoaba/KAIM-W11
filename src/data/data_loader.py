@@ -18,3 +18,6 @@ def load_dataset(assets, start_date, end_date):
     data['Date'] = pd.to_datetime(data['Date'], errors='coerce')
     return data
 
+def load_stock_data(ticker, start_date, end_date):
+    data = yf.download(ticker, start=start_date, end=end_date)
+    return data

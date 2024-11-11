@@ -1,9 +1,15 @@
 from statsmodels.tsa.arima.model import ARIMA
+from pmdarima import auto_arima
 
-def build_arima_model(data, order=(1, 1, 1)):
-    model = ARIMA(data['Close'], order=order)
+def find_optimal_arima_order(train_data):
+    model = auto_arima(train_data, seasonal=False, trace=True)
+    return model.order
+
+def train_arima(train_data, order):
+    model = ARIMA(train_data, order=order)
     model_fit = model.fit()
     return model_fit
 
-def forecast_arima(model_fit, steps=5):
-    return model_fit.forecast(steps=steps)
+def arima_forecast(model_fit, steps):
+    forecast = model_fit.forecast(steps=steps)
+    return forecast

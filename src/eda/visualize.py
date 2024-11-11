@@ -106,3 +106,23 @@ def plot_correlation_matrix(data):
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
     plt.title("Correlation Matrix of Asset Prices")
     plt.show()
+
+def plot_stock_data(data, title="Stock Closing Price"):
+    data.plot(figsize=(12, 6), title=title, xlabel='Date', ylabel='Price')
+    plt.show()
+
+def plot_train_test_split(train, test):
+    plt.figure(figsize=(12, 6))
+    plt.plot(train, label='Train Data')
+    plt.plot(test, label='Test Data')
+    plt.legend()
+    plt.title("Train-Test Split")
+    plt.show()
+
+def plot_forecast(actual, forecast, title="Model Forecast vs Actual"):
+    plt.figure(figsize=(12, 6))
+    plt.plot(actual.index, actual.values, label='Actual Prices')
+    plt.plot(actual.index, forecast, label='Forecast', color='orange')
+    plt.legend()
+    plt.title(title)
+    plt.show()
