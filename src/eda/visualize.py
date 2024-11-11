@@ -14,7 +14,7 @@ def plot_normalized_prices(data):
     plt.xlabel('Date')
     plt.ylabel('Normalized Price')
     plt.legend()
-    plt.savefig('../../figures/normalized_price.png', format='png', dpi=300)
+    plt.savefig('../figures/normalized_price.png', format='png', dpi=300)
     plt.show()
 
 
@@ -30,7 +30,7 @@ def plot_percentage_change(data):
     plt.xlabel('Date')
     plt.ylabel('Daily % Change')
     plt.legend()
-    plt.savefig('../../figures/daily_percentage_change.png', format='png', dpi=300)
+    plt.savefig('../figures/daily_percentage_change.png', format='png', dpi=300)
     plt.show()
 
 
@@ -58,7 +58,7 @@ def decompose_time_series(data, column='TSLA'):
     plt.legend(loc='upper left')
 
     plt.tight_layout()
-    plt.savefig('../../figures/decomposed_time_series.png', format='png', dpi=300)
+    plt.savefig('../figures/decomposed_time_series.png', format='png', dpi=300)
     plt.show()
 
 
@@ -85,7 +85,7 @@ def plot_moving_average_crossover(data, column='TSLA', short_window=50, long_win
     plt.xlabel('Date')
     plt.ylabel('Price')
     plt.legend()
-    plt.savefig('../../figures/moving_average_crossover.png', format='png', dpi=300)
+    plt.savefig('../figures/moving_average_crossover.png', format='png', dpi=300)
     plt.show()
 
 def plot_rolling_stats(data):
@@ -102,7 +102,7 @@ def plot_rolling_stats(data):
     plt.xlabel('Date')
     plt.ylabel('Price')
     plt.legend()
-    plt.savefig('../../figures/rolling_stats.png', format='png', dpi=300)
+    plt.savefig('../figures/rolling_stats.png', format='png', dpi=300)
     plt.show()
 
 def plot_correlation_matrix(data):
@@ -110,12 +110,12 @@ def plot_correlation_matrix(data):
     plt.figure(figsize=(8, 6))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
     plt.title("Correlation Matrix of Asset Prices")
-    plt.savefig('../../figures/correlation_matrix.png', format='png', dpi=300)
+    plt.savefig('../figures/correlation_matrix.png', format='png', dpi=300)
     plt.show()
 
 def plot_stock_data(data, title="Stock Closing Price"):
     data.plot(figsize=(12, 6), title=title, xlabel='Date', ylabel='Price')
-    plt.savefig('../../figures/stock_price.png', format='png', dpi=300)
+    plt.savefig('../figures/stock_price.png', format='png', dpi=300)
     plt.show()
 
 def plot_train_test_split(train, test):
@@ -124,7 +124,7 @@ def plot_train_test_split(train, test):
     plt.plot(test, label='Test Data')
     plt.legend()
     plt.title("Train-Test Split")
-    plt.savefig('../../figures/train_test_split.png', format='png', dpi=300)
+    plt.savefig('../figures/train_test_split.png', format='png', dpi=300)
     plt.show()
 
 def plot_forecast(actual, forecast, title="Model Forecast vs Actual"):
@@ -133,7 +133,7 @@ def plot_forecast(actual, forecast, title="Model Forecast vs Actual"):
     plt.plot(actual.index, forecast, label='Forecast', color='orange')
     plt.legend()
     plt.title(title)
-    plt.savefig('../../figures/forecast.png', format='png', dpi=300)
+    plt.savefig('../figures/forecast.png', format='png', dpi=300)
     plt.show()
 
 
@@ -146,7 +146,7 @@ def plot_forecast_prophet(data, forecast, ticker, forecast_horizon):
     plt.xlabel("Date")
     plt.ylabel("Stock Price")
     plt.legend()
-    plt.savefig('../../figures/forecast_prophet.png', format='png', dpi=300)
+    plt.savefig('../figures/forecast_prophet.png', format='png', dpi=300)
     plt.show()
 
 def plot_trend_volatility(trend, forecast):
@@ -157,7 +157,7 @@ def plot_trend_volatility(trend, forecast):
     plt.ylabel("Trend Value")
     plt.title("Trend and Volatility Analysis of Forecasted TSLA Stock Prices")
     plt.legend()
-    plt.savefig('../../figures/trend_volatility.png', format='png', dpi=300)
+    plt.savefig('../figures/trend_volatility.png', format='png', dpi=300)
     plt.show()
 
 def plot_opportunities_and_risks(forecast, opportunity_periods, risk_periods):
@@ -170,7 +170,7 @@ def plot_opportunities_and_risks(forecast, opportunity_periods, risk_periods):
     plt.xlabel("Date")
     plt.ylabel("Stock Price")
     plt.legend()
-    plt.savefig('../../figures/opportunities_and_risks.png', format='png', dpi=300)
+    plt.savefig('../figures/opportunities_and_risks.png', format='png', dpi=300)
     plt.show()
 
 
@@ -178,7 +178,7 @@ def plot_missing_values_heatmap(data, title='Missing Values'):
     plt.figure(figsize=(10, 6))
     sns.heatmap(data, cmap='coolwarm', annot=True, fmt='0.0f')
     plt.title(title)
-    plt.savefig('../../figures/missin_value_heatmap.png', format='png', dpi=300)
+    plt.savefig('../figures/missin_value_heatmap.png', format='png', dpi=300)
     plt.show()
 
 def plot_log_returns(log_returns, title='Log Returns'):
@@ -189,7 +189,7 @@ def plot_log_returns(log_returns, title='Log Returns'):
         plt.xlabel('Date')
         plt.ylabel('Log Returns')
         plt.grid(True)
-        plt.savefig(f'../../figures/log_returns_{symbol}.png', format='png', dpi=300)
+        plt.savefig(f'../figures/log_returns_{symbol}.png', format='png', dpi=300)
         plt.show()
 
 def plot_volatility(volatility, title='Volatility'):
@@ -198,7 +198,7 @@ def plot_volatility(volatility, title='Volatility'):
     plt.title(title)
     plt.xlabel('Stock Symbol')
     plt.ylabel('Volatility')
-    plt.savefig('../../figures/volatility.png', format='png', dpi=300)
+    plt.savefig('../figures/volatility.png', format='png', dpi=300)
     plt.show()
 
 def plot_portfolios(portfolios, min_vol_port, optimal_risky_port):
@@ -209,5 +209,5 @@ def plot_portfolios(portfolios, min_vol_port, optimal_risky_port):
     plt.xlabel('Volatility')
     plt.ylabel('Returns')
     plt.legend()
-    plt.savefig('../../figures/portfolio.png', format='png', dpi=300)
+    plt.savefig('../figures/portfolio.png', format='png', dpi=300)
     plt.show()
