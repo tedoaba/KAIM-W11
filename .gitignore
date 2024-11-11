@@ -6,7 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
-.week11/
+.week11
 
 # Distribution / packaging
 .Python
