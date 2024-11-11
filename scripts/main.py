@@ -10,9 +10,9 @@ import warnings
 sys.path.append(os.path.abspath('..'))
 
 from src.eda.trend_analysis import decompose_time_series, adf_test
-from src.data.data_loader import load_dataset, load_stock_data
+from src.data.data_loader import load_dataset, load_stock_data, retrieve_stock_data, get_close_prices
 from src.data.data_preprocessing import preprocess_data, perform_eda, fill_missing_values, extract_close_prices, scale_data, rename_columns_for_prophet, remove_tz_from_dataframe
-from src.eda.visualize import plot_normalized_prices, plot_percentage_change, decompose_time_series, plot_moving_average_crossover, plot_rolling_stats, plot_correlation_matrix, plot_stock_data, plot_train_test_split, plot_forecast, plot_forecast_prophet, plot_trend_volatility, plot_opportunities_and_risks
+from src.eda.visualize import plot_normalized_prices, plot_percentage_change, decompose_time_series, plot_moving_average_crossover, plot_rolling_stats, plot_correlation_matrix, plot_stock_data, plot_train_test_split, plot_forecast, plot_forecast_prophet, plot_trend_volatility, plot_opportunities_and_risks, plot_missing_values_heatmap, plot_log_returns, plot_volatility, plot_portfolios
 from src.portfolio.risk_metrics import calculate_risk_metrics, calculate_drawdown
 
 from src.data.train_test_split import split_data
@@ -23,6 +23,10 @@ from src.forecasting.model_evaluation import calculate_metrics
 
 from src.forecasting.prophet_model import fit_prophet_model, create_future_dates, generate_forecast
 from src.utils.time_utils import calculate_volatility, identify_opportunity_periods, identify_risk_periods
+
+from src.eda.price_analysis import calculate_log_returns, calculate_variance, calculate_volatility, calculate_covariance, calculate_missing_values, calculate_expected_return, calculate_portfolio_variance
+from src.portfolio.performance_metrics import simulate_random_portfolios
+import src.config as cfg
 
 
 
@@ -150,7 +154,37 @@ def task_3():
     print(f"\nPotential Risk Periods:\n{risk_periods[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]}")
 
 
+def task_4():
+    # Load Data
+    stock_data = retrieve_stock_data(cfg.selected_tickers, cfg.start_date, cfg.end_date)
+    close_prices = get_close_prices(stock_data)
+
+    # Missing Values Analysis
+    missing_values = calculate_missing_values(close_prices)
+    plot_missing_values_heatmap(missing_values)
+
+    # Calculate Log Returns
+    log_returns = calculate_log_returns(close_prices)
+    print(log_returns.head())
+
+    # Variance and Volatility
+    variance = calculate_variance(log_returns)
+    volatility = calculate_volatility(variance)
+    plot_volatility(volatility)
+
+    # Portfolio Simulation
+    ind_er = log_returns.mean()
+    cov_matrix = calculate_covariance(log_returns)
+    portfolios = simulate_random_portfolios(cfg.num_portfolios, ind_er, cov_matrix, cfg.selected_tickers)
+
+    # Plot Efficient Frontier
+    min_vol_port = portfolios.iloc[portfolios['Volatility'].idxmin()]
+    optimal_risky_port = portfolios.iloc[((portfolios['Returns'] - cfg.risk_free_rate) / portfolios['Volatility']).idxmax()]
+    plot_portfolios(portfolios, min_vol_port, optimal_risky_port)
+
+
 if __name__ == "__main__":
     task_1()
     task_2()
     task_3()
+    task_4()

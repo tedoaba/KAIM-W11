@@ -160,3 +160,38 @@ def plot_opportunities_and_risks(forecast, opportunity_periods, risk_periods):
     plt.ylabel("Stock Price")
     plt.legend()
     plt.show()
+
+
+def plot_missing_values_heatmap(data, title='Missing Values'):
+    plt.figure(figsize=(10, 6))
+    sns.heatmap(data, cmap='coolwarm', annot=True, fmt='0.0f')
+    plt.title(title)
+    plt.show()
+
+def plot_log_returns(log_returns, title='Log Returns'):
+    for symbol in log_returns.columns:
+        plt.figure(figsize=(10, 6))
+        plt.bar(log_returns.index, log_returns[symbol], label=symbol)
+        plt.title(f'{title} for {symbol}')
+        plt.xlabel('Date')
+        plt.ylabel('Log Returns')
+        plt.grid(True)
+        plt.show()
+
+def plot_volatility(volatility, title='Volatility'):
+    plt.figure(figsize=(10, 6))
+    plt.bar(volatility.index, volatility.values, color='#283149')
+    plt.title(title)
+    plt.xlabel('Stock Symbol')
+    plt.ylabel('Volatility')
+    plt.show()
+
+def plot_portfolios(portfolios, min_vol_port, optimal_risky_port):
+    plt.subplots(figsize=(10, 10))
+    plt.scatter(portfolios['Volatility'], portfolios['Returns'], marker='o', s=10, alpha=0.3, label='Portfolios')
+    plt.scatter(min_vol_port[1], min_vol_port[0], color='r', marker='*', s=500, label='Minimum Volatility Portfolio')
+    plt.scatter(optimal_risky_port[1], optimal_risky_port[0], color='g', marker='*', s=500, label='Optimal Risky Portfolio')
+    plt.xlabel('Volatility')
+    plt.ylabel('Returns')
+    plt.legend()
+    plt.show()
