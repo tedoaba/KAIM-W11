@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
 def download_data(assets, start_date, end_date):
