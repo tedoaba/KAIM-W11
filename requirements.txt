@@ -8,3 +8,4 @@ tensorflow
 pyyaml
 scipy
 seaborn
+pmdarima
