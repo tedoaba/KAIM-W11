@@ -104,12 +104,6 @@ The dataset includes daily metrics such as Open, High, Low, Close, Adjusted Clos
 ### Results and Conclusion
 By combining data-driven insights from time series forecasting with portfolio optimization, we created a strategic asset allocation plan that maximizes returns while minimizing risk. This model provides GMF Investments with a solid foundation for making informed decisions, improving client portfolios, and adapting to future market conditions.
 
-### Visualizations
-1. **Historical and Forecasted Price Trends**: Visualized TSLA’s predicted price movements with confidence intervals.
-2. **Portfolio Performance**: Included cumulative return charts and a risk-return analysis for the optimized portfolio.
-3. **Sharpe Ratio Analysis**: Showed the risk-adjusted return of the portfolio, highlighting the benefits of optimized asset allocation.
-
-
 ### Usage
 To execute the project pipeline:
 
@@ -128,12 +122,60 @@ To execute the project pipeline:
     python main.py
 
 ```
+
+### Visualizations
+
+#### Normalize Price
+
+![Normalized Price](figures/normalized_price.png)
+
+#### Daily Price Change 
+
+![Daily Price](figures/daily_percentage_change.png)
+
+#### Correlation Matrix
+
+![Correlation Matrix](figures/correlation_matrix.png)
+
+#### Moving Average Crosseover
+
+![Moving Average](figures/moving_average_crossover.png)
+
+#### Rolling Stats
+
+![Rolling Stats](figures/rolling_stats.png)
+
+#### Train-Test Split
+
+![Train-Test](figures/train_test_split.png)
+
+#### LSTM Forecast
+
+![LSTM forecast](figures/forecast.png)
+
+#### Prophet Forecast
+
+![Prophet forecast](figures/forecast_prophet.png)
+
+#### Trend Volatility
+
+![Trend Volatility](figures/trend_volatility.png)
+
+#### Opportunities and Risks
+
+![Opp and Risk](figures/opportunities_and_risks.png)
+
+#### Portfolio
+
+![Portfolio](figures/portfolio.png)
+
+
 ### Future Improvements
 - **Incorporate More Asset Classes**: Include additional stocks, commodities, and other ETFs for a broader asset base.
 - **Refine Forecasting Techniques**: Experiment with hybrid models and ensemble methods for improved prediction accuracy.
 - **Enhance Risk Management**: Implement advanced risk metrics such as Conditional Value at Risk (CVaR) to strengthen downside protection.
 
 ### Authors
-This project was completed by Tadesse Abateneh. 
+This project was completed by [Tadesse Abateneh](https://www.linkedin.com/in/tadesse-abateneh) 
 
 For further details, questions, or collaborations, please reach out to [Email](tedoaba@gmail.com)
