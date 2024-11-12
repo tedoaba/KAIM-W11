@@ -126,7 +126,7 @@ To execute the project pipeline:
     cd scripts
 
     python main.py
-    
+
 ```
 ### Future Improvements
 - **Incorporate More Asset Classes**: Include additional stocks, commodities, and other ETFs for a broader asset base.
@@ -136,4 +136,4 @@ To execute the project pipeline:
 ### Authors
 This project was completed by Tadesse Abateneh. 
 
-For further details, questions, or collaborations, please reach out to [your contact information].
+For further details, questions, or collaborations, please reach out to [Email](tedoaba@gmail.com)
