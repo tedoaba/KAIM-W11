@@ -29,13 +29,9 @@ import src.config as cfg
 
 
 def task_1():
-    # Define assets, date range, and load data
-    assets = ['TSLA', 'BND', 'SPY']
-    start_date = '2020-01-01'
-    end_date = '2023-01-01'
     
-    # Load and preprocess data
-    data = load_dataset(assets, start_date, end_date)
+    # Load Data
+    data = load_dataset(cfg.selected_tickers, cfg.start_date, cfg.end_date)
     data = preprocess_data(data)
     
     # Perform EDA
@@ -61,10 +57,7 @@ def task_1():
 def task_2():
     
     # Load data
-    ticker = 'TSLA'
-    start_date = '2015-01-01'
-    end_date = '2024-10-31'
-    data = load_stock_data(ticker, start_date, end_date)
+    data = load_stock_data(cfg.tsla_ticker, cfg.start_date, cfg.end_date)
     data = fill_missing_values(data)
     close_prices = extract_close_prices(data)
 
@@ -110,14 +103,7 @@ def task_3():
     np.random.seed(42)
     warnings.filterwarnings('ignore')
 
-    # Parameters
-    ticker = 'TSLA'
-    start_date = '2015-01-01'
-    end_date = '2024-10-31'
-    forecast_horizon = 365  # Adjust as needed
-
-    # Load and preprocess data
-    tsla_data = load_stock_data(ticker, start_date, end_date)
+    tsla_data = load_stock_data(cfg.tsla_ticker, cfg.start_date, cfg.end_date)
     tsla_data = fill_missing_values(tsla_data)
     tsla_data = rename_columns_for_prophet(tsla_data)
     tsla_data = remove_tz_from_dataframe(tsla_data)
@@ -128,11 +114,11 @@ def task_3():
 
     # Prophet modeling
     prophet_model = fit_prophet_model(tsla_data)
-    future_dates = create_future_dates(prophet_model, periods=forecast_horizon)
+    future_dates = create_future_dates(prophet_model, periods=cfg.forecast_horizon)
     forecast = generate_forecast(prophet_model, future_dates)
 
     # Plot results
-    plot_forecast_prophet(tsla_data, forecast, ticker, forecast_horizon)
+    plot_forecast_prophet(tsla_data, forecast, cfg.tsla_ticker, cfg.forecast_horizon)
 
     # Analyze trend and volatility
     trend = forecast['yhat']
