@@ -1,6 +1,6 @@
-# KAIM Weak 11 Challenge
+# Time Series Forecasting for Portfolio Management Optimization
 
-## Time Series Forecasting for Portfolio Management Optimization
+## KAIM Weak 11 Challenge
 
 ### Project Overview
 This project aims to enhance portfolio management strategies for Guide Me in Finance (GMF) Investments by leveraging advanced time series forecasting models. By predicting future stock prices, market trends, and associated risks, we provide data-driven insights to optimize asset allocation, enhance returns, and manage risks effectively.
